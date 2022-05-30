@@ -4,7 +4,7 @@
     name: apache_exporter
     state: restarted
     
-- name: restart apache
+- name: reload apache
   service:
     name: apache2
-    state: restarted
+    state: reloaded

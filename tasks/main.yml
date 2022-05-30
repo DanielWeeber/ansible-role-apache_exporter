@@ -1,4 +1,16 @@
 ---
+- name: Install apache2
+  package:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Check if apache2 is enabled
+  service:
+    name: apache2
+    state: started
+    enabled: true
+
 - name: Check current apache_exporter version.
   command: "{{ apache_exporter_bin_path }} --version"
   failed_when: false
@@ -29,7 +41,7 @@
     src: files/server-status.conf
     dest: /etc/apache2/sites-enabled/
     mode: 0755
-  notify: restart apache
+  notify: reload apache
   when: apache_exporter_download_check is success
 
 - name: Create apache_exporter user.

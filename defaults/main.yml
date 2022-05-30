@@ -8,5 +8,5 @@ apache_exporter_bin_path: /usr/local/bin/apache_exporter
 
 apache_exporter_options: ''
 
-apache_exporter_state: restarted
+apache_exporter_state: started
 apache_exporter_enabled: true
