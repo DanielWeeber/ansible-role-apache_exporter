@@ -1,38 +1,51 @@
-Role Name
-=========
+[![CI](https://github.com/DanielWeeber/ansible-role-apache_exporter/actions/workflows/release.yml/badge.svg?branch=master)](https://github.com/DanielWeeber/ansible-role-apache_exporter/actions/workflows/release.yml)
 
-A brief description of the role goes here.
+# Ansible Role: Apache exporter
 
-Requirements
-------------
+This role installs Prometheus' [Apache exporter](https://github.com/Lusitaniae/apache_exporter) on Apache hosts.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Requirements
 
-Role Variables
---------------
+Setup Status Page of Apache
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Role Variables
 
-Dependencies
-------------
+Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+    apache_exporter_version: '0.10.1'
 
-Example Playbook
-----------------
+The version of Apache exporter to install. Available releases can be found on the [tags](https://github.com/Lusitaniae/apache_exporter/tags) listing in the Apache exporter repository. Drop the `v` off the tag.
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+If you change the version, the `apache_exporter` binary will be replaced with the updated version, and the service will be restarted.
 
-    - hosts: servers
+    apache_exporter_arch: 'amd64'
+    apache_exporter_download_url: https://github.com/Lusitaniae/apache_exporter/releases/download/v{{ apache_exporter_version }}/apache_exporter-{{ apache_exporter_version }}-{{ apache_exporter_arch }}.tar.gz
+
+The path where the `apache_exporter` binary will be downloaded and installed from.
+
+    apache_exporter_options: ''
+
+Any additional options to pass to `apache_exporter` when it starts.
+
+    apache_exporter_state: started
+    apache_exporter_enabled: true
+
+Controls for the `apache_exporter` service.
+
+## Dependencies
+
+None.
+
+## Example Playbook
+
+    - hosts: all
       roles:
-         - { role: username.rolename, x: 42 }
+        - role: ansible-role-apache_exporter
 
-License
--------
+## License
 
-BSD
+MIT / BSD 
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created in 2021 by [Daniel Weeber](https://github.com/DanielWeeber). Heavily inspired and forked from [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
