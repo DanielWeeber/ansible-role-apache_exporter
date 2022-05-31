@@ -2,9 +2,8 @@ galaxy_info:
   author: Daniel Weeber
   namespace: danielweeber
   description: Prometheus' apache_exporter for Linux hosts.
-  galaxy_info:
-    role_name: apache_exporter
-    namespace: danielweeber
+  role_name: apache_exporter
+  namespace: danielweeber
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
