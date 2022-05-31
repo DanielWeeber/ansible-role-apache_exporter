@@ -5,16 +5,10 @@ name: CI
   push:
     branches:
       - master
-  schedule:
-    - cron: "30 6 * * 3"
-
-defaults:
-  run:
-    working-directory: 'danielweeber.apache_exporter'
 
 jobs:
 
-  molecule:
+  test:
     name: Molecule
     runs-on: ubuntu-latest
     strategy:
@@ -33,7 +27,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint ansible molecule[docker] docker
+        run: pip3 install ansible yamllint ansible-lint ansible molecule[docker] docker
 
       - name: Run Molecule tests.
         run: molecule test
